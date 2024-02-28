@@ -11,7 +11,7 @@ def compute_cost_matrix(source, target, p=2):
     cost_matrix = np.sum(np.power(source.reshape([source.shape[0], 1, source.shape[1]]) -
                                   target.reshape([1, target.shape[0], target.shape[1]]),
                                   p), axis=-1)
-    return cost_matrix
+    return cost_matrix / (cost_matrix.max() + 1e-10)
 
 def get_transport_plan(ot_matrix):
     """Return max correspondence"""
